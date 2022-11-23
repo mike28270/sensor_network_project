@@ -18,3 +18,8 @@ class connectMysql:
         query = f"INSERT INTO LED (did, date, time, value) VALUES ('{id}', CURRENT_DATE(), CURRENT_TIME(), {value})"
         query = self.insertTable(query)
         return query
+
+    def insertFinger(self, value):
+        query = f"INSERT INTO finger (date, time, value) VALUES (CURRENT_DATE(), CURRENT_TIME(), {value})"
+        query = self.insertTable(query)
+        return query

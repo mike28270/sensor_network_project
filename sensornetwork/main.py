@@ -1,9 +1,12 @@
 import cv2
 import serial
+import matplotlib.colors as mcolors # https://matplotlib.org/stable/gallery/color/named_colors.html
 from detection import gestureDetection
 from sn_mysql import connectMysql
 
+
 def main():
+    finger_cnt_temp = 0
     LED_COLOR = {
         0: "0 0 0",
         1: "255 0 0",
@@ -41,12 +44,17 @@ def main():
         # Receive RGB LED color code
         data_read = conn_serial.readline()
 
-        # Insert Table to the DB
+        # Insert RGB color code to a table in the DB
         if data_read.decode() != '\n':
             r, g, b = data_read.decode().split(" ")
             conn_mysql.insertLED(1, r)
             conn_mysql.insertLED(2, b)
             conn_mysql.insertLED(3, g)
+        
+        if finger_cnt !=  finger_cnt_temp:
+            conn_mysql.insertFinger(finger_cnt)
+            
+        finger_cnt_temp = finger_cnt
 
         # Show image
         cv2.imshow("Frame", image)

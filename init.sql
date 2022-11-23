@@ -8,3 +8,4 @@ CREATE DATABASE IF NOT EXISTS sensornetwork;
 USE sensornetwork;
 
 CREATE TABLE IF NOT EXISTS LED(rid SERIAL, did INT, date DATE , time TIME, value INT);
+CREATE TABLE IF NOT EXISTS finger(rid SERIAL, date DATE , time TIME, value INT);
