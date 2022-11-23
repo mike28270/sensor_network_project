@@ -38,13 +38,22 @@ services:
     container_name: sn-sftp
     image: atmoz/sftp
     volumes:
-        - ./sn:/home/admin/upload
+      - ./sn:/home/admin/upload
     ports:
-        - "2222:22"
+      - "2222:22"
     command: admin:admin:1001
 
   grafana:
     container_name: sn-grafana
     image: grafana/grafana
     ports:
-        - 3000:3000
+      - 3000:3000
+    environment:
+      GF_RENDERING_SERVER_URL: http://renderer:8081/render
+      GF_RENDERING_CALLBACK_URL: http://grafana:3000/
+      GF_LOG_FILTERS: rendering:debug
+    
+  grafana_renderer:
+    image: grafana/grafana-image-renderer:latest
+    ports:
+      - 8081:8081
