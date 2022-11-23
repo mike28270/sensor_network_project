@@ -1,8 +1,9 @@
-version: '3.8'
+version: '3.3'
 services:
-  php-apache-environment:
+  web:
     container_name: sn-php-apache
     image: php:8.0-apache
+    build: .
     volumes:
       - ./sn/src:/var/www/html/
     ports:
@@ -24,13 +25,6 @@ services:
       - ./sn/data:/data
       - ./init.sql:/data/application/init.sql
 
-  #adminer:
-  #  container_name: sn-adminer
-  #  image: adminer
-  #  restart: always
-  #  ports:
-  #    - 8080:8080
-
   phpmyadmin:
     container_name: sn-phpmyadmin
     image: phpmyadmin
@@ -48,3 +42,9 @@ services:
     ports:
         - "2222:22"
     command: admin:admin:1001
+
+  grafana:
+    container_name: sn-grafana
+    image: grafana/grafana
+    ports:
+        - 3000:3000
