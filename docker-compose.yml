@@ -54,6 +54,7 @@ services:
       GF_LOG_FILTERS: rendering:debug
     
   grafana_renderer:
+    container_name: sn-grafana-renderer
     image: grafana/grafana-image-renderer:latest
     ports:
       - 8081:8081
