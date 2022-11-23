@@ -7,4 +7,4 @@ FLUSH PRIVILEGES;
 CREATE DATABASE IF NOT EXISTS sensornetwork;
 USE sensornetwork;
 
-CREATE TABLE IF NOT EXISTS LED(rid SERIAL, did INT, date DATE , time TIME, state INT);
+CREATE TABLE IF NOT EXISTS LED(rid SERIAL, did INT, date DATE , time TIME, value INT);

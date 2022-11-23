@@ -1,5 +1,4 @@
 import cv2
-import time
 import serial
 from detection import gestureDetection
 from sn_mysql import connectMysql
