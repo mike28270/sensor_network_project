@@ -19,7 +19,19 @@ class connectMysql:
         query = self.insertTable(query)
         return query
 
+    def insertAngle(self, value):
+        query = f"INSERT INTO servo (date, time, value) VALUES (CURRENT_DATE(), CURRENT_TIME(), {value})"
+        query = self.insertTable(query)
+        return query
+
     def insertFinger(self, value):
         query = f"INSERT INTO finger (date, time, value) VALUES (CURRENT_DATE(), CURRENT_TIME(), {value})"
+        query = self.insertTable(query)
+        return query
+
+    def insertSensor(self, value):
+        finger, led_r, led_b, led_g, servo_angle, servo_level = value
+        query = (f"INSERT INTO sensor (date , time, finger, led_r, led_b, led_g, servo_angle, servo_level) "
+                 f"VALUES (CURRENT_DATE(), CURRENT_TIME(), {finger}, {led_r}, {led_b}, {led_g}, {servo_angle}, {servo_level});")
         query = self.insertTable(query)
         return query
